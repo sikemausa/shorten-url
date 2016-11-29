@@ -1,18 +1,46 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      id: "",
+      url: "",
+    };
+  }
+
+post(){
+  axios.post(`/urls`, {
+      id: this.state.id,
+      url: this.state.url
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+}
+
+updateUrl(e) {
+  const urlInput = e.target.value;
+  this.setState({ url: urlInput });
+}
+
   render() {
+    const { id, url } = this.state;
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <form>
+          <label>
+            <input type="text"
+                   value={url}
+                   onChange={ (e) => this.updateUrl(e) }/>
+          </label>
+          <input type="button" onClick={ () => this.post()} />
+        </form>
       </div>
     );
   }
