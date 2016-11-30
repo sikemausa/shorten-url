@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 import moment from 'moment';
+import md5 from 'md5';
+import Website from './Website';
 
 class App extends Component {
   constructor() {
@@ -19,10 +21,22 @@ class App extends Component {
 componentDidMount() {
   this.get();
 }
+//
+// incrementClicks(){
+//   axios.patch(`/urls`, {
+//       clicks: this.state.clicks,
+//   }).then((response) => {
+//       console.log(response);
+//       this.setState({ storedUrls: response.data });
+//   })
+//   .catch(function (error) {
+//     console.log(error);
+//   });
+// }
 
 post(){
   axios.post(`/urls`, {
-      id: this.state.id,
+      id: md5(this.state.url),
       url: this.state.url,
       shortenedUrl: this.state.shortenedUrl,
       clicks: this.state.clicks,
@@ -57,6 +71,8 @@ updateShortenedUrl(e) {
   this.setState({ shortenedUrl: shortenedUrlInput });
 }
 
+
+
   render() {
     const { id, url, shortenedUrl, storedUrls } = this.state;
     return (
@@ -74,14 +90,9 @@ updateShortenedUrl(e) {
         </form>
         <ul>
           { storedUrls ?
-            storedUrls.map((website) => {
+            storedUrls.map((website, index) => {
               return (
-                <li key={website.id}>
-                  <p>Url: {website.url}</p>
-                  <p>Shortened Url: <a href={website.shortenedUrl}>{'http://' + website.shortenedUrl}</a></p>
-                  <p>Clicks: {website.clicks}</p>
-                  <p>Date: {moment(website.date).format("MMM Do YY")}</p>
-                </li>
+                <Website key={index} website={website}/>
               )
             })
             :null }
