@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 import moment from 'moment';
-const md5 = require('md5');
+import md5 from 'md5';
+import Website from './Website';
 
 class App extends Component {
   constructor() {
@@ -20,7 +21,7 @@ class App extends Component {
 componentDidMount() {
   this.get();
 }
-// 
+//
 // incrementClicks(){
 //   axios.patch(`/urls`, {
 //       clicks: this.state.clicks,
@@ -89,14 +90,9 @@ updateShortenedUrl(e) {
         </form>
         <ul>
           { storedUrls ?
-            storedUrls.map((website) => {
+            storedUrls.map((website, index) => {
               return (
-                <li key={website.id}>
-                  <p>Url: {website.url}</p>
-                  <p>Shortened Url: {website.shortenedUrl}</p>
-                  <p>Clicks: {website.clicks}</p>
-                  <p>Date: {moment(website.date).format("MMM Do YY")}</p>
-                </li>
+                <Website key={index} website={website}/>
               )
             })
             :null }
