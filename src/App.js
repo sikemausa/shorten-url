@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
+import moment from 'moment';
 
 class App extends Component {
   constructor() {
@@ -10,7 +11,8 @@ class App extends Component {
       url: "",
       shortenedUrl: "",
       clicks: "",
-      storedUrls: ""
+      storedUrls: "",
+      date: ""
     };
   }
 
@@ -23,7 +25,8 @@ post(){
       id: this.state.id,
       url: this.state.url,
       shortenedUrl: this.state.shortenedUrl,
-      clicks: this.state.clicks
+      clicks: this.state.clicks,
+      date: Date.now(),
   })
   .then(function (response) {
     console.log(response);
@@ -31,6 +34,7 @@ post(){
   .catch(function (error) {
     console.log(error);
   });
+  this.get();
 }
 
 get(){
@@ -66,20 +70,22 @@ updateShortenedUrl(e) {
                    value={shortenedUrl}
                    onChange= { e => this.updateShortenedUrl(e) } />
           </label>
-          <input type="button" onClick={ () => this.post()} />
+          <input type="button" onClick={ () => this.post()}  />
         </form>
-        <div>
+        <ul>
           { storedUrls ?
             storedUrls.map((website) => {
               return (
-                <div key={website.id}>
-                <h1>Url: {website.url}</h1>
-                <h1> Shortened Url: { website.shortenedUrl }</h1>
-                </div>
+                <li key={website.id}>
+                  <p>Url: {website.url}</p>
+                  <p>Shortened Url: {website.shortenedUrl}</p>
+                  <p>Clicks: {website.clicks}</p>
+                  <p>Date: {moment(website.date).format("MMM Do YY")}</p>
+                </li>
               )
             })
             :null }
-        </div>
+        </ul>
       </div>
     );
   }
