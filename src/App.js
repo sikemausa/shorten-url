@@ -78,7 +78,7 @@ updateShortenedUrl(e) {
               return (
                 <li key={website.id}>
                   <p>Url: {website.url}</p>
-                  <p>Shortened Url: {website.shortenedUrl}</p>
+                  <p>Shortened Url: <a href={website.shortenedUrl}>{'http://' + website.shortenedUrl}</a></p>
                   <p>Clicks: {website.clicks}</p>
                   <p>Date: {moment(website.date).format("MMM Do YY")}</p>
                 </li>

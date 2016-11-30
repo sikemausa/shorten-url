@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const md5 = require('md5');
+const crc = require('crc');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -29,9 +30,9 @@ app.get('/urls', (request, response) => {
 
 app.post('/urls', (request, response) => {
   const data = request.body;
-  data.id = data.id || Date.now();
+  data.id = md5(data.url);
   data.url = data.url;
-  data.shortenedUrl = data.shortenedUrl;
+  data.shortenedUrl = crc.crc32(data.url).toString(16);
   data.clicks = data.clicks;
   data.date = data.date || Date.now();
   app.locals.urls.push(data);
