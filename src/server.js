@@ -14,14 +14,25 @@ app.get('/', (request, response) => {
   response.send('Hello World!');
 });
 
+// app.get('/urls/:id', (request, response) => {
+//   const { id } = request.params;
+//   const message = app.locals.urls[id];
+//
+//   if (!message) { return response.sendStatus(404); }
+//
+//   response.send({ id, message });
+// });
+
 app.get('/urls/:id', (request, response) => {
-  const { id } = request.params;
+  const { id } = request.body.id;
   const message = app.locals.urls[id];
 
   if (!message) { return response.sendStatus(404); }
 
-  response.json({ id, message });
+  response.send({ id, message });
 });
+
+
 
 app.get('/urls', (request, response) => {
     response.send(app.locals.urls);

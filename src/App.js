@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 import moment from 'moment';
+const md5 = require('md5');
 
 class App extends Component {
   constructor() {
@@ -19,10 +20,22 @@ class App extends Component {
 componentDidMount() {
   this.get();
 }
+// 
+// incrementClicks(){
+//   axios.patch(`/urls`, {
+//       clicks: this.state.clicks,
+//   }).then((response) => {
+//       console.log(response);
+//       this.setState({ storedUrls: response.data });
+//   })
+//   .catch(function (error) {
+//     console.log(error);
+//   });
+// }
 
 post(){
   axios.post(`/urls`, {
-      id: this.state.id,
+      id: md5(this.state.url),
       url: this.state.url,
       shortenedUrl: this.state.shortenedUrl,
       clicks: this.state.clicks,
@@ -56,6 +69,8 @@ updateShortenedUrl(e) {
   const shortenedUrlInput = e.target.value;
   this.setState({ shortenedUrl: shortenedUrlInput });
 }
+
+
 
   render() {
     const { id, url, shortenedUrl, storedUrls } = this.state;
