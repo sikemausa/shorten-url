@@ -27,9 +27,13 @@ app.get('/urls', (request, response) => {
     response.send(app.locals.urls);
 });
 
-  app.post('/urls', (request, response) => {
+app.post('/urls', (request, response) => {
   const data = request.body;
   data.id = data.id || Date.now();
+  data.url = data.url;
+  data.shortenedUrl = data.shortenedUrl;
+  data.clicks = data.clicks;
+  data.date = data.date || Date.now();
   app.locals.urls.push(data);
   response.status(201).send({ data });
 });
