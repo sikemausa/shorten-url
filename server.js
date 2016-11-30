@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const md5 = require('md5');
 const crc = require('crc');
 
-app.use(express.static('public'));
+app.use(express.static('build'));
 app.use(express.static('src'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
