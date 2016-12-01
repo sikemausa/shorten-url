@@ -21,7 +21,7 @@ class Website extends Component {
         <p onClick={() => this.incrementClicks() }>Url: {this.props.website.url}</p>
         <p>Shortened Url: <a href={this.props.website.shortenedUrl}> {'http://' + this.props.website.shortenedUrl}</a></p>
         <p>Clicks: {clicks}</p>
-        <p>Date: {moment(this.props.website.date).format("MMM Do YY")}</p>
+        <p>Date: {moment(this.props.website.date).format("MMMM Do YYYY, h:mm:ss a")}</p>
       </li>
     )
   }
