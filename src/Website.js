@@ -18,9 +18,9 @@ class Website extends Component {
     const { clicks } = this.state;
     return (
       <li key={this.props.website.id}>
-        <p onClick={() => this.incrementClicks() }>Url: {this.props.website.url}</p>
+        <p>Url: {this.props.website.url}</p>
         <p>Shortened Url: <a href={this.props.website.url}> {'http://' + this.props.website.shortenedUrl}</a></p>
-        <p>Clicks: {clicks}</p>
+        <p>Clicks: {this.props.website.clicks || 0}</p>
         <p>Date: {moment(this.props.website.date).format("MMM Do YY")}</p>
       </li>
     )

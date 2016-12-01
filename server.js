@@ -30,7 +30,15 @@ app.post('/urls', (request, response) => {
   response.status(201).send({ data });
 });
 
-
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on ${app.get('port')}.`);
+});
+
+app.get('/urls/:shortenedUrl', (request, response) => {
+  let targetUrl = app.locals.urls.filter((url) =>
+  url.shortenedUrl===request.params.shortenedUrl)[0];
+
+  if (!targetUrl) { response.send(`Please go away to somewhere that exists and never come back here.`)}
+  ++targetUrl.clicks;
+  response.redirect( targetUrl.url );
 });

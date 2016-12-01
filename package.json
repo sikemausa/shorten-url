@@ -4,6 +4,7 @@
   "private": true,
   "devDependencies": {
     "mocha": "^3.2.0",
+    "crc": "^3.4.3",
     "nodemon": "^1.11.0",
     "react-scripts": "0.7.0"
   },
