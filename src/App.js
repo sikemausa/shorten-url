@@ -30,7 +30,7 @@ post(){
       date: Date.now(),
   })
   .then(function (response) {
-    console.log(response);
+    console.log('Axios Post Request: ' + response);
   })
   .catch(function (error) {
     console.log(error);
@@ -40,8 +40,7 @@ post(){
 
 get(){
   axios.get(`/urls`).then((response) => {
-      console.log(response);
-      this.setState({ storedUrls: response.data });
+    this.setState({ storedUrls: response.data });
   })
   .catch(function (error) {
     console.log(error);

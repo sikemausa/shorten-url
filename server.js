@@ -4,8 +4,6 @@ const bodyParser = require('body-parser');
 const md5 = require('md5');
 const crc = require('crc');
 
-app.use(express.static('build'));
-app.use(express.static('src'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -16,26 +14,6 @@ app.locals.urls = [];
 app.get('/', (request, response) => {
   response.send('Hello World!');
 });
-
-// app.get('/urls/:id', (request, response) => {
-//   const { id } = request.params;
-//   const message = app.locals.urls[id];
-//
-//   if (!message) { return response.sendStatus(404); }
-//
-//   response.send({ id, message });
-// });
-
-app.get('/urls/:id', (request, response) => {
-  const { id } = request.body.id;
-  const message = app.locals.urls[id];
-
-  if (!message) { return response.sendStatus(404); }
-
-  response.send({ id, message });
-});
-
-
 
 app.get('/urls', (request, response) => {
     response.send(app.locals.urls);
