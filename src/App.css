@@ -1,0 +1,36 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+form {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  background: rgba(193, 193, 193, 0.73);
+  padding: 20px;
+}
+input {
+  padding: 5px;
+  margin: 10px;
+}
+
+nav {
+  display: flex;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgb(37, 237, 135);
+}
+
+li {
+  background: rgb(226, 226, 226);
+  /*margin: 10px;*/
+}
