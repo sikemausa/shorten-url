@@ -1,3 +1,5 @@
+import index from './public/index';
+
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -11,7 +13,7 @@ app.locals.title = 'Secret Box';
 app.locals.urls = [];
 
 app.get('/', (request, response) => {
-  response.send('Hello World!');
+  response.send(index);
 });
 
 app.get('/urls', (request, response) => {
