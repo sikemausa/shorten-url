@@ -11,7 +11,6 @@ class App extends Component {
     this.state = {
       id: "",
       url: "",
-      shortenedUrl: "",
       clicks: "",
       storedUrls: "",
       date: "",
@@ -39,6 +38,7 @@ post(){
     console.log(error);
   });
   this.get();
+  this.setState({url: ''});
 }
 
 get(){
@@ -76,30 +76,25 @@ updateUrl(e) {
   this.setState({ url: urlInput });
 }
 
-updateShortenedUrl(e) {
-  const shortenedUrlInput = e.target.value;
-  this.setState({ shortenedUrl: shortenedUrlInput });
-}
-
 render() {
   const { url, shortenedUrl, storedUrls, sortByDate, sortByPopularity, sortUrl } = this.state;
   return (
     <div className="App">
       <form>
-        <label><h1>Title</h1></label>
-          <input type="text"
-                 value={url}
-                 onChange={ e => this.updateUrl(e) }/>
-          <input type="text"
-                 value={shortenedUrl}
-                 onChange={ e => this.updateShortenedUrl(e) } />
-          <label><h1>Website</h1></label>
-        <input type="button" onClick={ () => this.post()}  />
+        <label>
+          Enter URL Here
+        </label>
+        <input type="text" value={url} onChange={ e => this.updateUrl(e) }
+        placeholder="http://www.YOURSITEHERE.com"/>
+        <button onClick={ (e) => { e.preventDefault(); this.post();}}>Submit URL</button>
       </form>
-      <button onClick={() => this.sortUrlAsc()}>Date Ascend</button>
-      <button onClick={() => this.sortUrlDesc()}>Date Descend</button>
-      <button onClick={() => this.sortClicksAsc()}>Least Clicks</button>
-      <button onClick={() => this.sortClicksDesc()}>Most Clicks</button>
+      <nav>
+        <button onClick={() => this.sortUrlAsc()}>Date Ascend</button>
+        <button onClick={() => this.sortUrlDesc()}>Date Descend</button>
+        <button onClick={() => this.sortClicksAsc()}>Least Clicks</button>
+        <button onClick={() => this.sortClicksDesc()}>Most Clicks</button>
+      </nav>
+      <h2>Shortened URLs</h2>
       <ul>
         { sortUrl ?
           sortUrl.map((website, index) => {
