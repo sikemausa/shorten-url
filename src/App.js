@@ -12,8 +12,8 @@ class App extends Component {
       id: "",
       url: "",
       clicks: "",
-      storedUrls: "",
       date: "",
+      storedUrls: "",
       sortUrl: [],
       baseUrl: 'http://localhost:3001/urls/'
     };
@@ -80,30 +80,35 @@ render() {
   const { url, shortenedUrl, storedUrls, sortByDate, sortByPopularity, sortUrl } = this.state;
   return (
     <div className="App">
-      <form>
-        <label>
-          Enter URL Here
-        </label>
-        <input type="text" value={url} onChange={ e => this.updateUrl(e) }
-        placeholder="http://www.YOURSITEHERE.com"/>
-        <button onClick={ (e) => { e.preventDefault(); this.post();}}>Submit URL</button>
-      </form>
-      <nav>
-        <button onClick={() => this.sortUrlAsc()}>Date Ascend</button>
-        <button onClick={() => this.sortUrlDesc()}>Date Descend</button>
-        <button onClick={() => this.sortClicksAsc()}>Least Clicks</button>
-        <button onClick={() => this.sortClicksDesc()}>Most Clicks</button>
-      </nav>
-      <h2>Shortened URLs</h2>
-      <ul>
-        { sortUrl ?
-          sortUrl.map((website, index) => {
-            return (
-              <Website key={index} website={website} baseUrl={this.state.baseUrl}/>
-            )
-          })
-          :null }
-      </ul>
+      <section className="top-page">
+        <h1>URL Shortener</h1>
+        <form>
+          <label>
+            Enter URL Here
+          </label>
+          <input type="text" value={url} onChange={ e => this.updateUrl(e) }
+          placeholder="http://www.YOURSITEHERE.com"/>
+          <button onClick={ (e) => { e.preventDefault(); this.post();}}>Submit URL</button>
+        </form>
+      </section>
+      <section className="bottom-page">
+        <h2>Shortened URLs</h2>
+        <nav>
+          <button onClick={() => this.sortUrlAsc()}>Date Ascend</button>
+          <button onClick={() => this.sortUrlDesc()}>Date Descend</button>
+          <button onClick={() => this.sortClicksAsc()}>Least Clicks</button>
+          <button onClick={() => this.sortClicksDesc()}>Most Clicks</button>
+        </nav>
+        <ul>
+          { sortUrl ?
+            sortUrl.map((website, index) => {
+              return (
+                <Website key={index} website={website} baseUrl={this.state.baseUrl}/>
+              )
+            })
+            :null }
+        </ul>
+      </section>
     </div>
     );
   }
