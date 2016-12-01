@@ -87,8 +87,10 @@ render() {
             Enter URL Here
           </label>
           <input type="text" value={url} onChange={ e => this.updateUrl(e) }
+            className=""
           placeholder="http://www.YOURSITEHERE.com"/>
-          <button onClick={ (e) => { e.preventDefault(); this.post();}}>Submit URL</button>
+          <button onClick={ (e) => { e.preventDefault(); this.post();}}
+            disabled={!url}>Submit URL</button>
         </form>
         <h2>Shortened URLs</h2>
         <nav>
