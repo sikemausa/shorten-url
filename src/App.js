@@ -90,8 +90,6 @@ render() {
           placeholder="http://www.YOURSITEHERE.com"/>
           <button onClick={ (e) => { e.preventDefault(); this.post();}}>Submit URL</button>
         </form>
-      </section>
-      <section className="bottom-page">
         <h2>Shortened URLs</h2>
         <nav>
           <button onClick={() => this.sortUrlAsc()}>Date Ascend</button>
@@ -99,6 +97,8 @@ render() {
           <button onClick={() => this.sortClicksAsc()}>Least Clicks</button>
           <button onClick={() => this.sortClicksDesc()}>Most Clicks</button>
         </nav>
+      </section>
+      <section className="bottom-page">
         <ul>
           { sortUrl ?
             sortUrl.map((website, index) => {
