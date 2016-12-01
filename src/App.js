@@ -16,6 +16,7 @@ class App extends Component {
       storedUrls: "",
       date: "",
       sortUrl: [],
+      baseUrl: 'http://localhost:3000/urls/'
     };
   }
 
@@ -32,7 +33,7 @@ post(){
     date: Date.now(),
   })
   .then(function (response) {
-    console.log(response);
+    console.log('Axios Post Request: ' + response);
   })
   .catch(function (error) {
     console.log(error);
@@ -100,14 +101,13 @@ render() {
       <button onClick={() => this.sortClicksAsc()}>Most Clicks</button>
       <button onClick={() => this.sortClicksDesc()}>Least Clicks</button>
       <ul>
-        {/* {storedUrls ? this.sort() : null} */}
-          { sortUrl ?
-            sortUrl.map((website, index) => {
-              return (
-                <Website key={index} website={website}/>
-              )
-            })
-            :null }
+        { sortUrl ?
+          sortUrl.map((website, index) => {
+            return (
+              <Website key={index} website={website} baseUrl={this.state.baseUrl}/>
+            )
+          })
+          :null }
       </ul>
     </div>
     );
