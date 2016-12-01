@@ -3,11 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-<<<<<<< HEAD
     "lodash": "^4.17.2",
-=======
-    "crc": "^3.4.3",
->>>>>>> df0104988e95ed061df226f044db88782ae555c1
     "nodemon": "^1.11.0",
     "react-scripts": "0.7.0"
   },
@@ -18,7 +14,6 @@
     "express": "^4.14.0",
     "md5": "^2.2.1",
     "moment": "^2.17.0",
-    "nodemon": "^1.11.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1"
   },
