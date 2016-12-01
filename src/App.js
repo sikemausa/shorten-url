@@ -16,7 +16,7 @@ class App extends Component {
       storedUrls: "",
       date: "",
       sortUrl: [],
-      baseUrl: 'http://localhost:3000/urls/'
+      baseUrl: 'http://localhost:3001/urls/'
     };
   }
 
@@ -96,10 +96,10 @@ render() {
           <label><h1>Website</h1></label>
         <input type="button" onClick={ () => this.post()}  />
       </form>
-      <button onClick={() => this.sortUrlAsc()}>Date Ascend </button>
-      <button onClick={() => this.sortUrlDesc()}>Date Descend </button>
-      <button onClick={() => this.sortClicksAsc()}>Most Clicks</button>
-      <button onClick={() => this.sortClicksDesc()}>Least Clicks</button>
+      <button onClick={() => this.sortUrlAsc()}>Date Ascend</button>
+      <button onClick={() => this.sortUrlDesc()}>Date Descend</button>
+      <button onClick={() => this.sortClicksAsc()}>Least Clicks</button>
+      <button onClick={() => this.sortClicksDesc()}>Most Clicks</button>
       <ul>
         { sortUrl ?
           sortUrl.map((website, index) => {

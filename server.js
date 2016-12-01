@@ -38,7 +38,7 @@ app.get('/urls/:shortenedUrl', (request, response) => {
   let targetUrl = app.locals.urls.filter((url) =>
   url.shortenedUrl===request.params.shortenedUrl)[0];
 
-  if (!targetUrl) { response.send(`Please go away to somewhere that exists and never come back here.`)}
+  if (!targetUrl) { response.send(`It's Broken.`)}
   ++targetUrl.clicks;
   response.redirect( targetUrl.url );
 });
