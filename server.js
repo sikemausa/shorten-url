@@ -3,11 +3,10 @@ const app = express();
 const bodyParser = require('body-parser');
 const md5 = require('md5');
 const crc = require('crc');
+const server = app.set('port', process.env.PORT || 3001);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-app.set('port', process.env.PORT || 3001);
 app.locals.title = 'Secret Box';
 app.locals.urls = [];
 
@@ -42,3 +41,5 @@ app.get('/urls/:shortenedUrl', (request, response) => {
   ++targetUrl.clicks;
   response.redirect( targetUrl.url );
 });
+
+module.exports = server;
